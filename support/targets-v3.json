@@ -77,6 +77,20 @@
       }
     },
     {
+      "payloadId": "e3q-S9280ZCS6DZF2",
+      "displayName": "Galaxy S24 Ultra (SM-S9280 CHC) | Kernel 6.1.145",
+      "models": ["SM-S9280"],
+      "kernelVersions": ["6.1.145"],
+      "exploit": {
+        "url": "https://raw.githubusercontent.com/ezn24/Root-My-Galaxy-Payloads/main/artifacts/e3q-S9280ZCS6DZF2/cve-2026-43499-app.so",
+        "size": 104128
+      },
+      "kernelsu": {
+        "url": "https://raw.githubusercontent.com/ezn24/Root-My-Galaxy-Payloads/main/kernelsu/ksud-e3q-S9280ZCS6DZF2-kdp",
+        "size": 4879856
+      }
+    },
+    {
       "payloadId": "e3q-S9280ZHS6DZG1",
       "displayName": "Galaxy S24 Ultra (SM-S9280 TGY) | Kernel 6.1.145",
       "models": ["SM-S9280"],
