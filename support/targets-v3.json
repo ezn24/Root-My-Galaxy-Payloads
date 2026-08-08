@@ -55,7 +55,7 @@
       "kernelVersions": ["6.6.98"],
       "exploit": {
         "url": "https://raw.githubusercontent.com/BuSung-dev/Root-My-Galaxy-Payloads/main/artifacts/q7q-F966USQU9BZDN/cve-2026-43499-app.so",
-        "size": 111216
+        "size": 104128
       },
       "kernelsu": {
         "url": "https://raw.githubusercontent.com/BuSung-dev/Root-My-Galaxy-Payloads/main/kernelsu/ksud-s25u-kdp",
@@ -74,6 +74,20 @@
       "kernelsu": {
         "url": "https://raw.githubusercontent.com/BuSung-dev/Root-My-Galaxy-Payloads/main/kernelsu/ksud-e3q-S928USQS6DZF2-kdp",
         "size": 4726416
+      }
+    },
+    {
+      "payloadId": "e3q-S9280ZHS6DZG1",
+      "displayName": "Galaxy S24 Ultra (SM-S9280 TGY) | Kernel 6.1.145",
+      "models": ["SM-S9280"],
+      "kernelVersions": ["6.1.145"],
+      "exploit": {
+        "url": "https://raw.githubusercontent.com/ezn24/Root-My-Galaxy-Payloads/main/artifacts/e3q-S9280ZHS6DZG1/cve-2026-43499-app.so",
+        "size": 104128
+      },
+      "kernelsu": {
+        "url": "https://raw.githubusercontent.com/ezn24/Root-My-Galaxy-Payloads/main/kernelsu/ksud-e3q-S9280ZHS6DZG1-kdp",
+        "size": 4780072
       }
     },
     {
@@ -141,7 +155,7 @@
       "kernelVersions": ["5.15.189"],
       "exploit": {
         "url": "https://raw.githubusercontent.com/BuSung-dev/Root-My-Galaxy-Payloads/main/artifacts/dm3q-S9180ZHS8FZF5/cve-2026-43499-app.so",
-        "size": 137728
+        "size": 106184
       },
       "kernelsu": {
         "url": "https://raw.githubusercontent.com/BuSung-dev/Root-My-Galaxy-Payloads/main/kernelsu/ksud-dm3q-S9180ZHS8FZF5-kdp",

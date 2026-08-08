@@ -134,18 +134,57 @@
 #define PAGE_SIZE 4096
 #endif
 
+/* Patched pin_to_core block for src/kernelsnitch/utils.h.  Replaces
+ * the old:
+ *
+ *   static inline void pin_to_core(size_t core)
+ *   {
+ *       cpu_set_t cpuset;
+ *       CPU_ZERO(&cpuset);
+ *       CPU_SET(core, &cpuset);
+ *       SYSCHK(sched_setaffinity(0, sizeof(cpu_set_t), &cpuset));
+ *   }
+ *
+ * with a cpuset-aware version that falls back to any allowed core
+ * when the requested one is outside the cpuset_allowed mask.
+ */
 static inline void pin_to_core(size_t core)
 {
     cpu_set_t cpuset;
     CPU_ZERO(&cpuset);
+    cpu_set_t allowed;
+    if (sched_getaffinity(0, sizeof(allowed), &allowed) == 0 &&
+        !CPU_ISSET(core, &allowed)) {
+        for (int i = 0; i < CPU_SETSIZE; ++i) {
+            if (CPU_ISSET(i, &allowed)) {
+                core = (size_t)i;
+                break;
+            }
+        }
+    }
     CPU_SET(core, &cpuset);
-    SYSCHK(sched_setaffinity(0, sizeof(cpu_set_t), &cpuset));
+    int rc = sched_setaffinity(0, sizeof(cpu_set_t), &cpuset);
+    if (rc == -1) {
+        if (sched_getaffinity(0, sizeof(cpuset), &cpuset) == 0) {
+            (void)sched_setaffinity(0, sizeof(cpu_set_t), &cpuset);
+        }
+        pr_error("pin_to_core(%zu) fallback errno=%d\n", core, errno);
+    }
 }
 
 static inline void reset_cpu_pin(void)
 {
     cpu_set_t cpuset;
-    memset(&cpuset, 0xff, sizeof(cpu_set_t));
+    /* Re-apply the kernel-allowed mask rather than memset(0xff), which
+     * sets bits for CPUs that do not exist and yields EINVAL on SoCs
+     * whose nr_cpu_ids is < CPU_SETSIZE (e.g. S24 Ultra: 8 cores vs
+     * CPU_SETSIZE=1024).  sched_getaffinity intersects the cpuset
+     * cgroup with the system cpumask, so the returned mask is always
+     * legal. */
+    if (sched_getaffinity(0, sizeof(cpu_set_t), &cpuset) != 0) {
+        CPU_ZERO(&cpuset);
+        for (int i = 0; i < CPU_SETSIZE; ++i) CPU_SET(i, &cpuset);
+    }
     SYSCHK(sched_setaffinity(0, sizeof(cpu_set_t), &cpuset));
 }
 

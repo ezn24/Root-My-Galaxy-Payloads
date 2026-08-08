@@ -7,6 +7,10 @@ static const uint16_t p0_fingerprint_offsets[P0_FINGERPRINT_WORDS] = {
   0x000, 0x200, 0x400, 0x600, 0x800, 0xa00, 0xc00, 0xe00,
 };
 
+#ifndef E3Q_P0_ROW_150000_WORD_0200
+#define E3Q_P0_ROW_150000_WORD_0200 0x9106d0219000b001ULL
+#endif
+
 struct p0_fingerprint {
   uintptr_t slide;
   uint64_t words[P0_FINGERPRINT_WORDS];
@@ -97,7 +101,7 @@ static const struct p0_fingerprint p0_fingerprints[] = {
     0x91002101f94002eaULL, 0xa90357f6a9025ff8ULL,
     0xf980001117ffffe1ULL, 0xd50339bf54000103ULL,
     0xc8a97c02aa0103e9ULL, 0xd10083ffd503233fULL } },
-  { 0x150000ULL, { 0x6b17011faa1303e0ULL, 0x9106d0219000b001ULL,
+  { 0x150000ULL, { 0x6b17011faa1303e0ULL, E3Q_P0_ROW_150000_WORD_0200,
     0x1100fd08b9403ae8ULL, 0x943e2e3f2a1f03e1ULL,
     0xaa0803e2aa1803e0ULL, 0xb4fffd89f94026a9ULL,
     0x2a1f03e0910003fdULL, 0xa9034ff4a90257f6ULL } },
