@@ -17,6 +17,7 @@ It intentionally does not contain Android application source code.
 | --- | --- | --- | --- |
 | `galaxy-s25-series-2026-06-07` | Galaxy S25, S25+, S25 Edge, and S25 Ultra regional models | `6.6.98` | Device-tested |
 | `e3q-S928USQS6DZF2` | Galaxy S24 Ultra `SM-S928U` | `6.1.145` | Hardware debugging in progress |
+| `e3q-S9280ZCS6DZF2` | Galaxy S24 Ultra `SM-S9280` (CHC) | `6.1.145` | Offline build; device validation pending |
 | `e2s-S926BXXUEDZDR` | Galaxy S24+ `SM-S926B` | `6.1.157` | Device-tested |
 | `essi-A566EXXSCCZG6` | Galaxy A56 5G `SM-A566E` | `6.6.102` | Device-tested |
 | `a36xq-A366WVLS3AYG1` | Galaxy A36 5G `SM-A366W` | `6.6.46` | Device-tested |
@@ -41,6 +42,7 @@ schema version 3. `targets-v2.json` is retained for released 0.2.3 clients.
 ```sh
 make TARGET=pa3q-S938NKSUACZF1 ANDROID_NDK_HOME=/path/to/android-ndk
 make TARGET=e3q-S928USQS6DZF2 ANDROID_NDK_HOME=/path/to/android-ndk
+make TARGET=e3q-S9280ZCS6DZF2 ANDROID_NDK_HOME=/path/to/android-ndk
 make TARGET=e2s-S926BXXUEDZDR ANDROID_NDK_HOME=/path/to/android-ndk
 make TARGET=essi-S721NKSSCDZF3 ANDROID_NDK_HOME=/path/to/android-ndk
 make TARGET=e1s-S921BXXSFDZF2 ANDROID_NDK_HOME=/path/to/android-ndk
@@ -67,6 +69,7 @@ make TARGET=essi-S721NKSSCDZF3 ANDROID_NDK_HOME=/path/to/android-ndk release
 The complete firmware-to-profile procedure is recorded in
 [`docs/PORTING.md`](docs/PORTING.md). Samsung-specific KernelSU changes and
 versioned artifacts are documented in [`kernelsu/README.md`](kernelsu/README.md).
+The SM-S9280 CHC DZF2 profile is recorded in [`docs/SM-S9280-S9280ZCS6DZF2.md`](docs/SM-S9280-S9280ZCS6DZF2.md).
 The exact S921B DZF2 analysis is recorded separately in
 [`docs/SM-S921B-S921BXXSFDZF2.md`](docs/SM-S921B-S921BXXSFDZF2.md), and the
 S928U/S928U1 DZF2 analysis is in
