@@ -23,3 +23,10 @@
 #undef P0_ORACLE_PROBE_OFFSET
 #define P0_ORACLE_PROBE_OFFSET 0x0ULL
 #endif
+/* A6: DZG1 actual mm_struct size is 0x400 (from /proc/slabinfo),
+ * not the 0x500 default inherited from common.h.  Also bump KSNITCH
+ * collisions to 5 to match other working targets (e1s/e2s/a15). */
+#undef MM_STRUCT_SZ
+#define MM_STRUCT_SZ 0x400
+#undef KSNITCH_COLLISIONS
+#define KSNITCH_COLLISIONS 5
