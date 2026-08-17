@@ -95,9 +95,10 @@
       "displayName": "Galaxy S24 Ultra (SM-S9280 TGY) | Kernel 6.1.145",
       "models": ["SM-S9280"],
       "kernelVersions": ["6.1.145"],
+      "requiresFreshP0Session": true,
       "exploit": {
         "url": "https://raw.githubusercontent.com/ezn24/Root-My-Galaxy-Payloads/main/artifacts/e3q-S9280ZHS6DZG1/cve-2026-43499-app.so",
-        "size": 127728
+        "size": 134688
       },
       "kernelsu": {
         "url": "https://raw.githubusercontent.com/ezn24/Root-My-Galaxy-Payloads/main/kernelsu/ksud-e3q-S9280ZHS6DZG1-kdp",
