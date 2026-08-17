@@ -97,7 +97,7 @@
       "kernelVersions": ["6.1.145"],
       "exploit": {
         "url": "https://raw.githubusercontent.com/ezn24/Root-My-Galaxy-Payloads/main/artifacts/e3q-S9280ZHS6DZG1/cve-2026-43499-app.so",
-        "size": 126256
+        "size": 127728
       },
       "kernelsu": {
         "url": "https://raw.githubusercontent.com/ezn24/Root-My-Galaxy-Payloads/main/kernelsu/ksud-e3q-S9280ZHS6DZG1-kdp",
